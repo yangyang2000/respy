@@ -55,8 +55,7 @@ def pyth_solve(
 
     record_solution_progress(-1, file_sim)
 
-    # Backward iteration procedure. There is a PYTHON and FORTRAN
-    # implementation available. If agents are myopic, the backward induction
+    # Backward iteration procedure. If agents are myopic, the backward induction
     # procedure is not called upon.
     record_solution_progress(3, file_sim)
 

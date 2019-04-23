@@ -5,8 +5,6 @@ def record_warning(count):
     pretty printing in the output files. This warning indicates that this is
     in fact the case. Internally, the original values are all used.
 
-    The numbering of warning messages is aligned with FORTRAN and thus starts
-    at one and not zero.
     """
     with open("est.respy.log", "a") as out_file:
 

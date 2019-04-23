@@ -1,7 +1,4 @@
-""" Module for program constants used across the RESPY package. This is
-aligned with the constants from the FORTRAN implementation.
-"""
-import json
+"""Module for program constants used across the RESPY package."""
 from pathlib import Path
 
 import numpy as np
@@ -11,12 +8,7 @@ import numpy as np
 ROOT_DIR = Path(__file__).parents[2]
 
 # Directory with additional resources for the testing harness
-TEST_DIR = ROOT_DIR / "tests"
 TEST_RESOURCES_DIR = ROOT_DIR / "tests" / "resources"
-TEST_RESOURCES_BUILD = ROOT_DIR / ".bld" / "tests" / "resources"
-
-# Directory with the FORTRAN resources
-EXEC_DIR = ROOT_DIR / ".bld" / "fortran"
 
 MINISCULE_FLOAT = 1.0e-100
 LARGE_FLOAT = 1.0e8
@@ -35,48 +27,51 @@ TOL = 10 ** -DECIMALS
 INADMISSIBILITY_PENALTY = -400000.00
 
 # Missing values. These allow to aline the treatment of missing values across
-# implementations. There is no NAN available in FORTRAN.
+# implementations.
 MISSING_INT = -99
 MISSING_FLOAT = -99.00
 
-# Flags that provide additional information about the exact configuration
-with open(ROOT_DIR / ".bld" / ".config", "r") as infile:
-    config_dict = json.load(infile)
-
-IS_DEBUG = config_dict["DEBUG"]
-
-IS_PARALLELISM_MPI = config_dict["PARALLELISM_MPI"]
-IS_PARALLELISM_OMP = config_dict["PARALLELISM_OMP"]
-IS_FORTRAN = config_dict["FORTRAN"]
-IS_F2PY = config_dict["F2PY"]
+IS_DEBUG = True
 
 # Each implementation has its own set of optimizers available.
 OPT_EST_PYTH = ["SCIPY-BFGS", "SCIPY-POWELL", "SCIPY-LBFGSB"]
-OPT_EST_FORT = ["FORT-NEWUOA", "FORT-BFGS", "FORT-BOBYQA"]
 
 # Labels for columns in a dataset as well as the formatters.
-DATA_LABELS_EST = []
-DATA_LABELS_EST += ["Identifier", "Period", "Choice", "Wage"]
-DATA_LABELS_EST += ["Experience_A", "Experience_B", "Years_Schooling"]
-DATA_LABELS_EST += ["Lagged_Choice"]
+DATA_LABELS_EST = [
+    "Identifier",
+    "Period",
+    "Choice",
+    "Wage",
+    "Experience_A",
+    "Experience_B",
+    "Years_Schooling",
+    "Lagged_Choice",
+]
 
 # There is additional information available in a simulated dataset.
-DATA_LABELS_SIM = DATA_LABELS_EST[:]
-DATA_LABELS_SIM += ["Type"]
-DATA_LABELS_SIM += ["Total_Reward_1", "Total_Reward_2"]
-DATA_LABELS_SIM += ["Total_Reward_3", "Total_Reward_4"]
-DATA_LABELS_SIM += ["Systematic_Reward_1", "Systematic_Reward_2"]
-DATA_LABELS_SIM += ["Systematic_Reward_3", "Systematic_Reward_4"]
-DATA_LABELS_SIM += ["Shock_Reward_1", "Shock_Reward_2"]
-DATA_LABELS_SIM += ["Shock_Reward_3", "Shock_Reward_4"]
-DATA_LABELS_SIM += [
+DATA_LABELS_SIM = DATA_LABELS_EST + [
+    "Type",
+    "Total_Reward_1",
+    "Total_Reward_2",
+    "Total_Reward_3",
+    "Total_Reward_4",
+    "Systematic_Reward_1",
+    "Systematic_Reward_2",
+    "Systematic_Reward_3",
+    "Systematic_Reward_4",
+    "Shock_Reward_1",
+    "Shock_Reward_2",
+    "Shock_Reward_3",
+    "Shock_Reward_4",
     "Discount_Rate",
     "General_Reward_1",
     "General_Reward_2",
     "Common_Reward",
+    "Immediate_Reward_1",
+    "Immediate_Reward_2",
+    "Immediate_Reward_3",
+    "Immediate_Reward_4",
 ]
-DATA_LABELS_SIM += ["Immediate_Reward_1", "Immediate_Reward_2", "Immediate_Reward_3"]
-DATA_LABELS_SIM += ["Immediate_Reward_4"]
 
 DATA_FORMATS_EST = {}
 for key_ in DATA_LABELS_EST:

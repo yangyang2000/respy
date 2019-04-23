@@ -12,11 +12,7 @@ from respy.python.shared.shared_constants import LARGE_FLOAT
 
 
 def record_estimation_sample(data_frame):
-    """Record the size of the estimation sample.
-
-    Called before the code separates between the PYTHON and FORTRAN version.
-
-    """
+    """Record the size of the estimation sample."""
     num_agents_est = str(data_frame["Identifier"].nunique())
 
     with open("est.respy.log", "w") as out_file:

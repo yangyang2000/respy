@@ -7,9 +7,6 @@ import numpy as np
 from development.modules.auxiliary_shared import get_random_dirname
 from respy.pre_processing.model_processing import _options_spec_from_attributes
 from respy.pre_processing.model_processing import _params_spec_from_attributes
-from respy.python.shared.shared_constants import IS_FORTRAN
-from respy.python.shared.shared_constants import IS_PARALLELISM_MPI
-from respy.python.shared.shared_constants import IS_PARALLELISM_OMP
 from respy.python.shared.shared_constants import TOL
 from respy.tests.codes.auxiliary import simulate_observed
 from respy.tests.codes.random_model import generate_random_model
@@ -80,14 +77,7 @@ def check_single(tests, idx):
     # Distribute test information.
     attr, crit_val = tests[idx]
 
-    if not IS_PARALLELISM_OMP or not IS_FORTRAN:
-        attr["num_threads"] = 1
-
-    if not IS_PARALLELISM_MPI or not IS_FORTRAN:
-        attr["num_procs"] = 1
-
-    if not IS_FORTRAN:
-        attr["version"] = "python"
+    attr["version"] = "python"
 
     # In the past we also had the problem that some of the testing machines report
     # selective failures when the regression vault was created on another machine.

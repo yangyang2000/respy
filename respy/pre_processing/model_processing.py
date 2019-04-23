@@ -28,7 +28,7 @@ def process_model_spec(params_spec, options_spec):
 def write_out_model_spec(attr, save_path):
     params_spec = _params_spec_from_attributes(attr)
     options_spec = _options_spec_from_attributes(attr)
-    # todo: does this need index=False?
+    # TODO: does this need index=False?
     params_spec.to_csv(save_path + ".csv")
     with open(save_path + ".json", "w") as j:
         json.dump(options_spec, j)
@@ -137,7 +137,7 @@ def _create_attribute_dictionary(params_spec, options_spec):
         "num_paras": len(params_spec),
     }
 
-    # todo: add assert statements for bounds
+    # TODO: add assert statements for bounds
     bounds = []
     for coeff in params_spec.index:
         bound = []
@@ -153,22 +153,12 @@ def _create_attribute_dictionary(params_spec, options_spec):
         params_spec["fixed"].astype(bool).to_numpy().tolist()
     )
 
-    optimizers = [
-        "FORT-NEWUOA",
-        "FORT-BFGS",
-        "FORT-BOBYQA",
-        "SCIPY-BFGS",
-        "SCIPY-POWELL",
-        "SCIPY-LBFGSB",
-    ]
+    optimizers = ["SCIPY-BFGS", "SCIPY-POWELL", "SCIPY-LBFGSB"]
     # to-do: add type checks and/or conversions for optimizer options
     attr["optimizer_options"] = {}
     for opt in optimizers:
         attr["optimizer_options"][opt] = options_spec[opt]
 
-    attr["is_myopic"] = params_spec.loc[("delta", "delta"), "para"] == 0.0
-
-    # to-do: make asserts that all string values are lowercase
     return attr
 
 
@@ -211,9 +201,6 @@ def default_model_dict():
 
     """
     default = {
-        "FORT-NEWUOA": {"maxfun": 1000000, "npt": 1, "rhobeg": 1.0, "rhoend": 0.000001},
-        "FORT-BFGS": {"eps": 0.0001, "gtol": 0.00001, "maxiter": 10, "stpmx": 100.0},
-        "FORT-BOBYQA": {"maxfun": 1000000, "npt": 1, "rhobeg": 1.0, "rhoend": 0.000001},
         "SCIPY-BFGS": {"eps": 0.0001, "gtol": 0.0001, "maxiter": 1},
         "SCIPY-POWELL": {
             "ftol": 0.0001,

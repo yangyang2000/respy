@@ -43,7 +43,7 @@ def run_robustness_test(seed, is_investigation):
     # with the construction of the maximum level of schooling as we need to rule out
     # that anyone in the estimation sample has a value larger then the specified maximum
     # value.
-    version = np.random.choice(["python", "fortran"])
+    version = "python"
     if version == "python":
         max_periods = 3
     else:

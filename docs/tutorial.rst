@@ -255,43 +255,7 @@ The implemented optimization algorithms vary with the program's version. If you 
 the Python version of the program, you can choose from the ``scipy`` implementations of
 the BFGS  (Norcedal and Wright, 2006) and POWELL (Powell, 1964) algorithm. Their
 implementation details are available `here <https://docs.scipy.org/doc/scipy-0.17.0/
-reference/generated/scipy.optimize.minimize.html>`_. For Fortran, we implemented the
-BFGS and NEWUOA (Powell, 2004) algorithms.
-
-**FORT-NEWUOA**
-
-=======     ======      ==========================
-Key         Value       Interpretation
-=======     ======      ==========================
-maxfun      int         maximum number of function evaluations
-npt         int         number of points for approximation model
-rhobeg      float       starting value for size of trust region
-rhoend      float       minimum value of size for trust region
-=======     ======      ==========================
-
-**FORT-BFGS**
-
-=======     ======      ==========================
-Key         Value       Interpretation
-=======     ======      ==========================
-eps         float       value to use for step size if fprime is approximated
-gtol        float       gradient norm must be less than gtol before successful
-                        termination
-maxiter     int         maximum number of iterations
-stpmx       float       maximum step size
-=======     ======      ==========================
-
-
-**FORT-BOBYQA**
-
-=======     ======      ==========================
-Key         Value       Interpretation
-=======     ======      ==========================
-maxfun      float       maximum number of function evaluations
-npt         int         number of points for approximation model
-rhobeg      float       starting value for size of trust region
-rhoend      float       minimum value of size for trust region
-=======     ======      ==========================
+reference/generated/scipy.optimize.minimize.html>`_.
 
 **SCIPY-BFGS**
 

@@ -11,12 +11,8 @@ from respy.pre_processing.model_processing import _read_params_spec
 from respy.python.evaluate.evaluate_python import create_draws_and_prob_wages
 from respy.python.shared.shared_auxiliary import dist_class_attributes
 from respy.python.shared.shared_auxiliary import distribute_parameters
-from respy.python.shared.shared_auxiliary import (
-    get_continuation_value_and_ex_post_rewards,
-)
 from respy.python.shared.shared_auxiliary import get_optim_paras
 from respy.python.shared.shared_constants import DECIMALS
-from respy.python.shared.shared_constants import MISSING_FLOAT
 from respy.python.solve.solve_auxiliary import StateSpace
 from respy.tests.codes.random_model import generate_random_model
 
@@ -146,93 +142,6 @@ class TestClass(object):
                 else:
                     cond = df[label] == 0
                 assert np.all(cond)
-
-    def test_4(self):
-        """ Testing the return values for the total values in case of myopic
-        individuals for one period.
-
-        Note
-        ----
-        The original test was designed to use Fortran rewards and calculate the total
-        values and rewards ex post in Python and see whether they match. As both
-        versions diverged in their implementation, we will implement the test with the
-        Python version and check the equality of Fortran and Python outputs at all
-        stages.
-
-        """
-
-        constr = {"edu_spec": {"max": 99}}
-        params_spec, options_spec = generate_random_model(
-            myopic=True, point_constr=constr
-        )
-
-        # The equality below does not hold if schooling is an inadmissible state.
-        respy_obj = RespyCls(params_spec, options_spec)
-        respy_obj, _ = respy_obj.simulate()
-
-        (
-            num_periods,
-            num_types,
-            optim_paras,
-            edu_spec,
-            mapping_state_idx,
-            periods_emax,
-            states_all,
-            periods_rewards_systematic,
-            states_number_period,
-        ) = dist_class_attributes(
-            respy_obj,
-            "num_periods",
-            "num_types",
-            "optim_paras",
-            "edu_spec",
-            "mapping_state_idx",
-            "periods_emax",
-            "states_all",
-            "periods_rewards_systematic",
-            "states_number_period",
-        )
-
-        # We have to create the state space and calculate the rewards in the Python
-        # version as we later need the wages which are not part of
-        # ``periods_rewards_systematic``.
-        state_space = StateSpace(
-            num_periods, num_types, edu_spec["start"], edu_spec["max"], optim_paras
-        )
-
-        # Check that rewards match
-        _, _, pyth, _ = state_space._get_fortran_counterparts()
-
-        # Set NaNs to -99.
-        mask = np.isnan(periods_rewards_systematic)
-        periods_rewards_systematic[mask] = MISSING_FLOAT
-
-        assert_almost_equal(pyth, periods_rewards_systematic)
-
-        period = np.random.choice(num_periods)
-        draws = np.random.normal(size=4)
-
-        # Internalize periods_emax
-        state_space._create_attributes_from_fortran_counterparts(periods_emax)
-
-        # Unpack necessary attributes
-        rewards_period = state_space.get_attribute_from_period("rewards", period)
-        emaxs_period = state_space.get_attribute_from_period("emaxs", period)[:, :4]
-        max_education_period = (
-            state_space.get_attribute_from_period("states", period)[:, 3]
-            >= edu_spec["max"]
-        )
-
-        total_values, rewards_ex_post = get_continuation_value_and_ex_post_rewards(
-            rewards_period[:, -2:],
-            rewards_period[:, :4],
-            emaxs_period,
-            draws.reshape(1, -1),
-            optim_paras["delta"],
-            max_education_period,
-        )
-
-        np.testing.assert_equal(total_values, rewards_ex_post)
 
 
 def test_create_draws_and_prob_wages():

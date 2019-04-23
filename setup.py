@@ -1,44 +1,5 @@
-import os
-import subprocess
-
 from setuptools import find_packages
 from setuptools import setup
-from setuptools.command.build_py import build_py
-from setuptools.command.develop import develop
-
-
-class CustomDevelopCommand(develop):
-    """ Customized setuptools install command - prints a friendly greeting.
-    """
-
-    def run(self):
-        """ Overwriting the existing command.
-        """
-        os.chdir("respy")
-
-        subprocess.run(["python", "waf", "distclean"])
-        subprocess.run(["python", "waf", "configure", "build", "-j", "1", "-vvv"])
-
-        os.chdir("../")
-
-        develop.run(self)
-
-
-class CustomBuildCommand(build_py):
-    """ Customized setuptools install command - prints a friendly greeting.
-    """
-
-    def run(self):
-        """ Overwriting the existing command.
-        """
-        os.chdir("respy")
-
-        subprocess.run(["python", "waf", "distclean"])
-        subprocess.run(["python", "waf", "configure", "build", "-j", "1", "-vvv"])
-
-        os.chdir("../")
-
-        build_py.run(self)
 
 
 PROJECT_URLS = {
@@ -53,17 +14,7 @@ def setup_package():
     metadata = dict(
         name="respy",
         packages=find_packages(),
-        package_data={
-            "respy": [
-                "fortran/bin/*",
-                "fortran/*.so",
-                "fortran/lib/*.*",
-                "fortran/include/*.*",
-                "tests/resources/*",
-                ".config",
-                "pre_processing/base_spec.csv",
-            ]
-        },
+        package_data={"respy": ["tests/resources/*", "pre_processing/base_spec.csv"]},
         version="1.2.0",
         description=(
             "respy is a Python package for the simulation and estimation of a "
@@ -90,7 +41,6 @@ def setup_package():
             "pytest>=3.0",
             "pyaml",
         ],
-        cmdclass={"build_py": CustomBuildCommand, "develop": CustomDevelopCommand},
         platforms="any",
         include_package_data=True,
         zip_safe=False,
