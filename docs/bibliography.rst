@@ -44,8 +44,8 @@ Manski, C. and Lerman S. (1977). `The Estimation of Choice Probabilities from Ch
 Based Samples <https://doi.org/10.2307/1914121>`_. *Econometrica*, 45(8): 1977-1988.
 
 Marsaglia, G. (1968). `Random Numbers fall Mainly in the Planes
-<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC285899/pdf/pnas00123-0038.pdf>`_.
-*Proceedings of the National Academy of Sciences*, 61(1): 25-28.
+<https://doi.org/10.1073/pnas.61.1.25>`_. *Proceedings of the National Academy of
+Sciences*, 61(1): 25-28.
 
 Matsumoto, M. and Nishimura, T. (1998). `Mersenne Twister: A 623-dimensionally
 Equidistributed Uniform Pseudo-random Number Generator

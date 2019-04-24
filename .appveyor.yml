@@ -12,6 +12,8 @@ notifications:
 # Do not start two builds, one for the branch and one for the PR.
 skip_branch_with_pr: true
 
+image: Visual Studio 2017
+
 environment:
   matrix:
       - MINICONDA: "C:\\Miniconda36-x64"
