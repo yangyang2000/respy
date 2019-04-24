@@ -302,6 +302,7 @@ pgtol       float       gradient norm must be less than gtol before successful
 
 Archive
 -------
+
 **PARALLELISM**
 
 =======     ======      ==========================
@@ -320,9 +321,6 @@ Key         Value       Interpretation
 flag        bool        apply scaling to parameters
 minimum     float       minimum value for gradient approximation
 =======     ======      ==========================
-
-
-
 
 Constraints for the Optimizer
 -----------------------------

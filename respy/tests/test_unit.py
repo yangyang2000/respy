@@ -6,8 +6,8 @@ from numba import njit
 from pandas.testing import assert_series_equal
 
 from respy import RespyCls
-from respy.pre_processing.model_processing import _read_options_spec
-from respy.pre_processing.model_processing import _read_params_spec
+from respy.pre_processing.model_processing import read_options_spec
+from respy.pre_processing.model_processing import read_params_spec
 from respy.python.evaluate.evaluate_python import create_draws_and_prob_wages
 from respy.python.shared.shared_auxiliary import dist_class_attributes
 from respy.python.shared.shared_auxiliary import distribute_parameters
@@ -21,12 +21,10 @@ assert_almost_equal = partial(np.testing.assert_almost_equal, decimal=DECIMALS)
 
 
 class TestClass(object):
-    """ This class groups together some tests.
-    """
+    """This class groups together some tests."""
 
     def test_1(self):
-        """ Testing whether back-and-forth transformation have no effect.
-        """
+        """Testing whether back-and-forth transformation have no effect."""
         for _ in range(10):
             num_types = np.random.randint(1, 5)
             num_paras = 53 + (num_types - 1) * 6
@@ -45,16 +43,15 @@ class TestClass(object):
             np.testing.assert_allclose(base, x)
 
     def test_2(self):
-        """ Testing whether the back and forth transformation works.
-        """
+        """Testing whether the back and forth transformation works."""
         for _ in range(100):
             params_spec, options_spec = generate_random_model()
             # Process request and write out again.
             respy_obj = RespyCls(params_spec, options_spec)
             respy_obj.write_out("alt.respy")
 
-            new_params_spec = _read_params_spec("alt.respy.csv")
-            new_options_spec = _read_options_spec("alt.respy.json")
+            new_params_spec = read_params_spec("alt.respy.csv")
+            new_options_spec = read_options_spec("alt.respy.json")
 
             assert options_spec == new_options_spec
 
@@ -62,8 +59,7 @@ class TestClass(object):
                 assert_series_equal(params_spec[col], new_params_spec[col])
 
     def test_3(self):
-        """ Testing some of the relationships in the simulated dataset.
-        """
+        """Testing some of the relationships in the simulated dataset."""
         is_deterministic = np.random.choice([True, False])
         is_myopic = np.random.choice([True, False])
 

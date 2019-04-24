@@ -34,5 +34,5 @@ previous :math:`E\max` results during the backward induction procedure.
 
 For more details, see the script `online <https://github.com/OpenSourceEconomics/respy/
 blob/janosg/development/documentation/scalability/run_scalability.py>`_ and the `logfile
-<https://github.com/OpenSourceEconomics/respy/blob/janosg/doc/results/scalability.respy.
-info>`_.
+<https://github.com/OpenSourceEconomics/respy/blob/janosg/docs/results/
+scalability.respy.info>`_.

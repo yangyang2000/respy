@@ -6,8 +6,6 @@ Roadmap
 We aim for improvements to ``respy`` in three domains: Economics, Software Engineering,
 and Numerical Methods.
 
-.. todo:: Extend list with possible topics for theses?
-
 Economics
 ---------
 

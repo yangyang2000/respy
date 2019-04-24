@@ -118,14 +118,14 @@ def respy_interface(respy_obj, request, data=None):
         mask_paras_fixed = np.array(optim_paras["paras_fixed"])
         paras_bounds_free_unscaled = np.array(optim_paras["paras_bounds"])[
             ~mask_paras_fixed
-        ]
+        ].astype(np.float)
         paras_bounds_free_unscaled[:, 0] = np.where(
-            paras_bounds_free_unscaled[:, 0] == None,  # noqa: E711
+            np.isnan(paras_bounds_free_unscaled[:, 0]),
             -HUGE_FLOAT,
             paras_bounds_free_unscaled[:, 0],
         )
         paras_bounds_free_unscaled[:, 1] = np.where(
-            paras_bounds_free_unscaled[:, 1] == None,  # noqa: E711
+            np.isnan(paras_bounds_free_unscaled[:, 1]),
             HUGE_FLOAT,
             paras_bounds_free_unscaled[:, 1],
         )

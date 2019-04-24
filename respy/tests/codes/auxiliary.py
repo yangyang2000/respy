@@ -1,4 +1,4 @@
-"""This module contains auxiliary functions for the PYTEST suite."""
+"""This module contains auxiliary functions for the pytest suite."""
 import shlex
 
 import numpy as np
@@ -121,15 +121,13 @@ def compare_est_log(base_est_log):
 
 
 def get_floats(line):
-    """ This extracts the floats from the line."""
+    """This extracts the floats from the line."""
     line_entries = shlex.split(line)
     return [float(val) for val in line_entries if not isinstance(val, str)]
 
 
 def write_interpolation_grid(respy_obj):
-    """ Write out an interpolation grid that can be used across
-    implementations.
-    """
+    """Write out an interpolation grid that can be used across implementations."""
 
     # Distribute class attribute
     num_periods, num_points_interp, edu_spec, num_types = dist_class_attributes(
@@ -140,7 +138,7 @@ def write_interpolation_grid(respy_obj):
     state_space = StateSpace(num_periods, num_types, edu_spec["start"], edu_spec["max"])
 
     states_number_period = state_space.states_per_period
-    max_states_period = max(states_number_period)
+    max_states_period = states_number_period.max()
 
     # Initialize container
     booleans = np.full((max_states_period, num_periods), True)
@@ -158,7 +156,7 @@ def write_interpolation_grid(respy_obj):
 
         # Draw points for interpolation
         indicators = np.random.choice(
-            range(num_states), size=(num_states - num_points_interp), replace=False
+            num_states, size=(num_states - num_points_interp), replace=False
         )
 
         # Replace indicators
@@ -224,8 +222,7 @@ def write_lagged_start(num_agents_sim):
 
 
 def get_valid_shares(num_groups):
-    """ We simply need a valid request for the shares of types summing to one.
-    """
+    """We simply need a valid request for the shares of types summing to one."""
     shares = np.random.uniform(size=num_groups)
     shares = shares / np.sum(shares)
     shares = shares.tolist()
@@ -233,8 +230,7 @@ def get_valid_shares(num_groups):
 
 
 def transform_to_logit(shares):
-    """ This function transform
-    """
+    """This function transform."""
     denominator = 1.0 / shares[0]
     coeffs = []
     for i in range(len(shares)):

@@ -1,6 +1,14 @@
 from setuptools import find_packages
 from setuptools import setup
+from pathlib import Path
 
+
+DESCRIPTION = (
+    "respy is a Python package for the simulation and estimation of a "
+    "prototypical finite-horizon dynamic discrete choice model."
+)
+
+README = Path("README.rst").read()
 
 PROJECT_URLS = {
     "Bug Tracker": "https://github.com/OpenSourceEconomics/respy/issues",
@@ -16,16 +24,14 @@ def setup_package():
         packages=find_packages(),
         package_data={"respy": ["tests/resources/*", "pre_processing/base_spec.csv"]},
         version="1.2.0",
-        description=(
-            "respy is a Python package for the simulation and estimation of a "
-            "prototypical finite-horizon dynamic discrete choice model."
-        ),
+        description=DESCRIPTION,
+        long_description=README,
         author="Philipp Eisenhauer",
         author_email="eisenhauer@policy-lab.org",
         url="https://respy.readthedocs.io/en/latest/",
         project_urls=PROJECT_URLS,
         license="MIT",
-        keywords=["Economics", " Dynamic Discrete Choice Model"],
+        keywords=["Economics", "Dynamic Discrete Choice Model"],
         classifiers=[
             "Intended Audience :: Science/Research",
             "License :: OSI Approved :: MIT License",
@@ -38,7 +44,7 @@ def setup_package():
             "pandas>=0.24",
             "scipy>=0.19",
             "statsmodels>=0.9",
-            "pytest>=3.0",
+            "pytest>=4.0",
             "pyaml",
         ],
         platforms="any",

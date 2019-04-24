@@ -15,13 +15,13 @@ def process_model_spec(params_spec, options_spec):
         assert isinstance(
             params_spec, str
         ), "params_spec has to be a DataFrame or file path."
-        params_spec = _read_params_spec(params_spec)
+        params_spec = read_params_spec(params_spec)
     if not isinstance(options_spec, dict):
         assert isinstance(
             options_spec, str
         ), "options_spec has to be a dictionary or file path."
-        options_spec = _read_options_spec(options_spec)
-    attr = _create_attribute_dictionary(params_spec, options_spec)
+        options_spec = read_options_spec(options_spec)
+    attr = create_attribute_dictionary(params_spec, options_spec)
     return attr
 
 
@@ -102,7 +102,7 @@ def _params_spec_from_attributes(attr):
     return csv
 
 
-def _create_attribute_dictionary(params_spec, options_spec):
+def create_attribute_dictionary(params_spec, options_spec):
     attr = {
         "edu_max": int(options_spec["edu_spec"]["max"]),
         "file_est": str(options_spec["estimation"]["file"]),
@@ -173,7 +173,7 @@ def _get_num_types(params_spec):
     return num_types
 
 
-def _read_params_spec(file_path):
+def read_params_spec(file_path):
     assert file_path.endswith(".csv"), "file_path has to be a .csv file"
     params_spec = pd.read_csv(file_path)
     params_spec["para"] = params_spec["para"].astype(float)
@@ -181,7 +181,7 @@ def _read_params_spec(file_path):
     return params_spec
 
 
-def _read_options_spec(file_path):
+def read_options_spec(file_path):
     if file_path.endswith(".json"):
         with open(file_path, "r") as j:
             options_spec = json.load(j)

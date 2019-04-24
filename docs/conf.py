@@ -66,6 +66,10 @@ else:
     todo_include_todos = True
     todo_emit_warnings = True
 
+# Configure Sphinx' linkcheck
+linkcheck_ignore = ["https://doi.org/*."]
+linkcheck_workers = 10
+
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

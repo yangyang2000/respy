@@ -7,7 +7,7 @@ from numpy.random import randint
 from numpy.random import uniform
 
 from respy.pre_processing.model_checking import check_model_attributes
-from respy.pre_processing.model_processing import _create_attribute_dictionary
+from respy.pre_processing.model_processing import create_attribute_dictionary
 from respy.pre_processing.specification_helpers import csv_template
 from respy.tests.codes.auxiliary import get_valid_shares
 from respy.tests.codes.auxiliary import OPTIMIZERS_EST
@@ -153,7 +153,7 @@ def generate_random_model(
         options[optimizer] = generate_optimizer_options(optimizer)
 
     # TODO: better error catching here to locate the problems.
-    attr = _create_attribute_dictionary(params, options)
+    attr = create_attribute_dictionary(params, options)
     check_model_attributes(attr)
 
     for key, value in point_constr.items():
@@ -162,7 +162,7 @@ def generate_random_model(
         else:
             options[key] = value
 
-    attr = _create_attribute_dictionary(params, options)
+    attr = create_attribute_dictionary(params, options)
     check_model_attributes(attr)
 
     if file_path is not None:

@@ -3,16 +3,8 @@ Basic Usage
 
 We now illustrate the basic capabilities of the ``respy`` package in a simple tutorial.
 
-.. todo::
-
-    The following link refers to the test/resources dir since there is no longer any
-    special directory for the tutorial files. Would it be better to separate this files
-    in a specific example directory? Additionally there is no longer an example.ini
-    initalization file. The link under prerequisites still refers to the master branch,
-    sinse there is no example.ini file in janosg.
-
 All the material is available `online
-<https://github.com/OpenSourceEconomics/respy/blob/master/respy/clsRespy.py>`_.
+<https://github.com/OpenSourceEconomics/respy/tree/master/respy/tests/resources>`_.
 
 Prerequisites
 -------------
@@ -24,8 +16,8 @@ To complete the current tutorial a Pyhon v. 3.4 or newer installation is require
 **Initialization File**
 
 In order to perform simulation and/or estimation using ``respy`` package an
-initialization file containing initial parameter values, important data set dimentions,
-arguments for the optimization algorythms, etc. needs to be specified. Details on the
+initialization file containing initial parameter values, important data set dimensions,
+arguments for the optimization algorithms, etc. needs to be specified. Details on the
 components of the initialization file are presented in the section
 :ref:`model-specification`. Please note that the initialization file should be in your
 current working directory or another accessible directory when executing the commands
@@ -42,9 +34,9 @@ Execution of the short script below in a python interpreter performs the followi
 
 * calls for the usage of the ``respy`` package,
 * defines a model in ``respy``  based on the initialization file,
-* simulates a data set of agents' choices and state experienes for the specified number
+* simulates a data set of agents' choices and state experiences for the specified number
   of agents and periods based on the parameters values in the initialization file,
-* uses the simulated data as an imput data set to estimate requested parameters based on
+* uses the simulated data as an input data set to estimate requested parameters based on
   starting values specialized in the initialization file,
 * simulates a data set for the specified number of agents and periods based on the
   parameters values in the initialization file.

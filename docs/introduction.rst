@@ -1,10 +1,6 @@
 Introduction
 ==============
 
-.. only non technical aspects
-.. for what can respy be used? -> teaching, research, start for extension
-.. for what has respy been used?
-
 ``respy`` is a research tool. It provides the computational support for several research
 projects that analyze the economics driving agents' educational and occupational choices
 over their life cycle within the framework of a finite-horizon discrete choice dynamic
@@ -12,10 +8,10 @@ programming model.
 
 Here is some of the recent work:
 
-* Eisenhauer, P. (2016). `The Approximate Solution of Finite-Horizon Discrete Choice
-  Dynamic Programming Models: Revisiting Keane & Wolpin (1994)
-  <https://github.com/structRecomputation/manuscript/blob/master/eisenhauer.2016.pdf>`_.
-  *Unpublished Manuscript*.
+* Eisenhauer, P. (2019). `The Approximate Solution of Finite-Horizon Discrete Choice
+  Dynamic Programming Models: Revisiting Keane & Wolpin (1994).
+  <https://onlinelibrary.wiley.com/doi/pdf/10.1002/jae.2648>`_ *Journal of Applied
+  Econometrics*, 34(1), 149-154.
 
     The estimation of finite-horizon discrete choice dynamic programming models is
     computationally expensive. This limits their realism and impedes verification and
@@ -25,8 +21,9 @@ Here is some of the recent work:
     and provide some additional insights that underscore the trade-off between
     computation time and the accuracy of estimation results.
 
-* Eisenhauer, P. (2016). Risk and Ambiguity in Dynamic Models of Educational Choice.
-  *Unpublished Manuscript*.
+* Eisenhauer, P. (2016). `Robust Human Capital Investment under Risk and Ambuguity
+  <https://github.com/peisenha/peisenha.github.io/blob/master/material/
+  eisenhauer-robust.pdf>`_ *Unpublished Manuscript*.
 
     I instill a fear of model misspecification into the agents of a finite-horizon
     discrete choice dynamic programming model. Agents are ambiguity averse and seek

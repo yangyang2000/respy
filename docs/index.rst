@@ -11,7 +11,7 @@ baseline model presented in:
 
     Keane, M. P. and  Wolpin, K. I. (1994). `The Solution and Estimation of Discrete
     Choice Dynamic Programming Models by Simulation and Interpolation: Monte Carlo
-    Evidence <https://www.jstor.org/stable/2109768>`_. *The Review of Economics and
+    Evidence <https://doi.org/10.2307/2109768>`_. *The Review of Economics and
     Statistics*, 76(4): 648-672.
 
 .. image:: https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000
@@ -53,6 +53,7 @@ baseline model presented in:
    developer_doc
    docker
    releases
+   roadmap
    api
 
 .. toctree::
@@ -61,7 +62,6 @@ baseline model presented in:
    :hidden:
 
    contributing
-   details
    developer_doc
    credits
    changes
