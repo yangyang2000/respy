@@ -2,7 +2,6 @@ import os
 import shlex
 
 import numpy as np
-import pandas as pd
 import statsmodels.api as sm
 from numba import njit
 
@@ -730,7 +729,7 @@ class StateSpace:
     indexer : np.ndarray
         Array with shape (num_periods, num_periods, num_periods, edu_max, 4, num_types).
     covariates : np.ndarray
-        Array with shape (num_periods, 16) containing covariates of each state necessary
+        Array with shape (num_states, 16) containing covariates of each state necessary
         to calculate rewards.
     rewards : np.ndarray
         Array with shape (num_states, 9) containing rewards of each state.
@@ -857,30 +856,6 @@ class StateSpace:
             raise StateSpaceError("Inadmissible period.")
 
         return attribute[indices]
-
-    def to_frame(self):
-        """Get pandas DataFrame of state space.
-
-        Example
-        -------
-        >>> state_space = StateSpace(1, 1, [10], 11)
-        >>> state_space.to_frame().shape
-        (2, 22)
-
-        """
-        attributes = [
-            getattr(self, i, None)
-            for i in ["states", "covariates", "rewards", "emaxs"]
-            if getattr(self, i, None) is not None
-        ]
-        columns = [
-            item
-            for i in ["states", "covariates", "rewards", "emaxs"]
-            for item in getattr(self, i + "_columns")
-            if getattr(self, i, None) is not None
-        ]
-
-        return pd.DataFrame(np.hstack(attributes), columns=columns)
 
     def _create_slices_by_periods(self, num_periods):
         """Create slices to index all attributes in a given period.
