@@ -16,8 +16,6 @@ from respy.python.shared.shared_auxiliary import get_continuation_value
 from respy.python.shared.shared_auxiliary import get_emaxs_of_subsequent_period
 from respy.python.shared.shared_auxiliary import transform_disturbances
 from respy.python.shared.shared_constants import HUGE_FLOAT
-from respy.python.shared.shared_constants import MISSING_FLOAT
-from respy.python.shared.shared_constants import MISSING_INT
 from respy.python.solve.solve_risk import construct_emax_risk
 
 

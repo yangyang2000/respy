@@ -154,10 +154,12 @@ def _create_attribute_dictionary(params_spec, options_spec):
     )
 
     optimizers = ["SCIPY-BFGS", "SCIPY-POWELL", "SCIPY-LBFGSB"]
-    # to-do: add type checks and/or conversions for optimizer options
+    # TODO: add type checks and/or conversions for optimizer options
     attr["optimizer_options"] = {}
     for opt in optimizers:
         attr["optimizer_options"][opt] = options_spec[opt]
+
+    attr["is_myopic"] = params_spec.loc[("delta", "delta"), "para"] == 0.0
 
     return attr
 

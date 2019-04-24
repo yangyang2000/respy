@@ -32,8 +32,8 @@ class TestClass(object):
         process_dataset(respy_obj)
 
     def test_2(self):
-        """ If there is no random variation in rewards then the number of draws to simulate the
-        expected future value should have no effect.
+        """If there is no random variation in rewards then the number of draws to
+        simulate the expected future value should have no effect.
         """
         params_spec, options_spec = generate_random_model(deterministic=True)
 
@@ -47,15 +47,18 @@ class TestClass(object):
             respy_obj.set_attr("num_draws_emax", num_draws_emax)
             respy_obj.lock()
             respy_obj = simulate_observed(respy_obj)
-            periods_emax = respy_obj.get_attr("periods_emax")
+            state_space = respy_obj.get_attr("state_space")
 
             if base is None:
-                base = periods_emax.copy()
-
-            diff = np.max(
-                abs(np.ma.masked_invalid(base) - np.ma.masked_invalid(periods_emax))
-            )
-            np.testing.assert_almost_equal(diff, 0.0)
+                base = state_space.emaxs
+            else:
+                diff = np.max(
+                    abs(
+                        np.ma.masked_invalid(base)
+                        - np.ma.masked_invalid(state_space.emaxs)
+                    )
+                )
+                np.testing.assert_almost_equal(diff, 0.0)
 
     def test_3(self):
         """ Testing whether the a simulated dataset and the evaluation of the criterion function
