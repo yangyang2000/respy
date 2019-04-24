@@ -6,7 +6,7 @@ from setuptools import setup
 
 DESCRIPTION = (
     "respy is a Python package for the simulation and estimation of a "
-    "prototypical finite-horizon dynamic discrete choice model."
+    "prototypical finite-horizon dynamic discrete choice model. "
 )
 
 README = Path("README.rst").read()

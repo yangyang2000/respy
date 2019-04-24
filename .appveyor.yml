@@ -36,6 +36,7 @@ install:
   # Configure conda
   - conda config --set always_yes yes --set changeps1 no
   - conda info -a
+  - conda update python
 
   - pip install tox-conda
 
