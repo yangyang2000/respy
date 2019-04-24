@@ -68,7 +68,6 @@ else:
 
 # Configure Sphinx' linkcheck
 linkcheck_ignore = ["https://doi.org/*."]
-linkcheck_workers = 10
 
 # -- Options for HTML output ----------------------------------------------
 

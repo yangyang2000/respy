@@ -6,15 +6,18 @@ notifications:
         on_failure: always
     email: false
 
-language:
-    - python
+language: python
 
-python:
-    - 3.6
-    - 3.7
+python: 3.6
 
-before_install:
-    - sudo apt-get update
+env:
+    - PYTHON_VERSION = 3.6
+    - PYTHON_VERSION = 3.7
+
+# Makes sure that only one build per commit is executed.
+branches:
+    only:
+        - master
 
 install:
     # Install and configure conda
@@ -24,9 +27,7 @@ install:
     - conda config --set always_yes yes --set changeps1 no
     - conda info -a
 
-    # Set python version
-    - conda install python=$TRAVIS_PYTHON_VERSION
-
+    - conda install python=$PYTHON_VERSION
     - pip install tox-conda
 
 script:
@@ -43,4 +44,4 @@ deploy:
     distributions: "sdist"
     on:
         tags: true
-        condition: "$TRAVIS_PYTHON_VERSION = 3.6"
+        condition: "$PYTHON_VERSION = 3.6"

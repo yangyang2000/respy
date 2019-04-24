@@ -1,8 +1,3 @@
-exclude: >
-    (?x)^(
-        .pytest_cache |
-        .tox |
-    )$
 repos:
 -   repo: https://github.com/asottile/reorder_python_imports
     rev: v1.4.0

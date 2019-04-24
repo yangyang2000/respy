@@ -173,40 +173,35 @@ class TestClass(object):
         params_spec, options_spec = generate_random_model(deterministic=True)
 
         # Manual specification of update patterns.
-        updates = {"valid_1": [
-            False,
-            True,
-            False,
-            True,
-            True,
-            False,
-            True,
-            True,
-            True,
-            False,
-        ], "valid_2": [False] * 10, "valid_3": [True] * 10, "invalid_1": [
-            False,
-            False,
-            True,
-            True,
-            False,
-            True,
-            True,
-            False,
-            True,
-            False,
-        ], "invalid_2": [
-            False,
-            False,
-            False,
-            True,
-            False,
-            False,
-            True,
-            False,
-            True,
-            False,
-        ]}
+        updates = {
+            "valid_1": [False, True, False, True, True, False, True, True, True, False],
+            "valid_2": [False] * 10,
+            "valid_3": [True] * 10,
+            "invalid_1": [
+                False,
+                False,
+                True,
+                True,
+                False,
+                True,
+                True,
+                False,
+                True,
+                False,
+            ],
+            "invalid_2": [
+                False,
+                False,
+                False,
+                True,
+                False,
+                False,
+                True,
+                False,
+                True,
+                False,
+            ],
+        }
 
         # off-diagonals fixed
 
