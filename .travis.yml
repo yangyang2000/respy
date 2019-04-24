@@ -14,10 +14,10 @@ env:
     - PYTHON_VERSION = 3.6
     - PYTHON_VERSION = 3.7
 
-# Makes sure that only one build per commit is executed.
-branches:
-    only:
-        - master
+# The tests run only if it is an PR or if a tag is pushed. This should prevent duplicate
+# builds with pr and push. We cannot disable push as it also disables deployment via
+# tags.
+if: type != push OR tag IS present
 
 install:
     # Install and configure conda
